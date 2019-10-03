@@ -23,6 +23,15 @@ dependencies {
 
   // This dependency is used internally, and not exposed to consumers on their own compile classpath.
   implementation 'com.google.guava:guava:27.1-jre'
+  implementation  platform("com.fasterxml.jackson:jackson-bom:${LIB_JACKSON}")
+  implementation "com.fasterxml.jackson.core:jackson-core"
+  implementation "com.fasterxml.jackson.core:jackson-annotations"
+  implementation "com.fasterxml.jackson.core:jackson-databind"
+  compileOnly "org.projectlombok:lombok:$LIB_LOMBOK"
+  testCompileOnly "org.projectlombok:lombok:$LIB_LOMBOK"
+
+  annotationProcessor "org.projectlombok:lombok:${LIB_LOMBOK}"
+  testAnnotationProcessor "org.projectlombok:lombok:${LIB_LOMBOK}"
 
   // Use JUnit test framework
   testImplementation 'junit:junit:4.12'

@@ -1,0 +1,95 @@
+{
+    "substitute": [
+        {
+            "module" : "javax.servlet:javax.servlet-api:(3,)",
+            "with" : "javax.servlet:javax.servlet-api:4.+",
+            "reason" : "OWASP",
+            "author" : "vas",
+            "date" : "03 Dec 2017"
+        },
+        {
+            "module": "org.apache.logging.log4j:log4j:(1.2,)",
+            "with": "org.apache.logging.log4j:log4j:1.2.+",
+            "reason": "Unneeded ",
+            "author" : "vas",
+            "date" : "07 Dec 2017"
+        },
+        {
+            "module": "com.thoughtworks.xstream:xstream:(1.4,)",
+            "with": "com.thoughtworks.xstream:xstream:1.4.+",
+            "reason": "https://github.ibm.com/toscana/reaction-service/pull/3",
+            "author" : "vas",
+            "date" : "23 Jan 2018"
+        },
+        {
+            "module": "commons-collections:commons-collections:(3.2,)",
+            "with": "commons-collections:commons-collections:3.2.+",
+            "reason": "https://github.ibm.com/toscana/reaction-service/pull/3",
+            "author" : "vas",
+            "date" : "23 Jan 2018"
+        },
+        {
+            "module": "org.apache.tomcat.embed:tomcat-embed-logging-juli:(8.0,)",
+            "with": "org.apache.tomcat.embed:tomcat-embed-logging-juli:9.0.+",
+            "reason": "common package Toscana-wide",
+            "author" : "vas",
+            "date" : "30 Jan 2018"
+        },
+        {
+            "module": "org.apache.tomcat.embed:tomcat-embed-websocket:(8.0,)",
+            "with": "org.apache.tomcat.embed:tomcat-embed-websocket:9.0.+",
+            "reason": "common package Toscana-wide",
+            "author" : "vas",
+            "date" : "30 Jan 2018"
+        },
+        {
+            "module": "org.apache.tomcat.embed:tomcat-embed-logging-juli:(8.0,)",
+            "with": "org.apache.tomcat.embed:tomcat-embed-logging-juli:9.0.+",
+            "reason": "common package Toscana-wide",
+            "author" : "vas",
+            "date" : "30 Jan 2018"
+        },
+        {
+            "module": "org.apache.tomcat.embed:tomcat-embed-websocket:(8.0,)",
+            "with": "org.apache.tomcat.embed:tomcat-embed-websocket:9.0.+",
+            "reason": "common package Toscana-wide",
+            "author" : "vas",
+            "date" : "30 Jan 2018"
+        },
+        {
+            "module": "org.apache.tomcat.embed:tomcat-embed-core:(8.0,)",
+            "with": "org.apache.tomcat.embed:tomcat-embed-core:9.0.+",
+            "reason": "https://github.ibm.com/toscana/planning/issues/33279",
+            "author" : "vas",
+            "date" : "28 Feb 2018"
+        },
+        {
+            "module": "org.apache.tomcat.embed:tomcat-embed-core:(8.0,)",
+            "with": "org.apache.tomcat.embed:tomcat-embed-core:9.0.+",
+            "reason": "https://github.ibm.com/toscana/planning/issues/33279",
+            "author" : "vas",
+            "date" : "28 Feb 2018"
+        },
+        {
+            "module": "org.apache.tomcat.embed:tomcat-embed-el:(8.0,)",
+            "with": "org.apache.tomcat.embed:tomcat-embed-el:9.0.+",
+            "reason": "https://github.ibm.com/toscana/planning/issues/33279",
+            "author" : "vas",
+            "date" : "28 Feb 2018"
+        },
+        {
+            "module": "org.apache.tomcat.embed:tomcat-embed-el:(8.0,)",
+            "with": "org.apache.tomcat.embed:tomcat-embed-el:9.0.+",
+            "reason": "https://github.ibm.com/toscana/planning/issues/33279",
+            "author" : "vas",
+            "date" : "28 Feb 2018"
+        },
+        {
+            "module": "org.apache.tomcat.embed:tomcat-embed-websocket:(8.0,)",
+            "with": "org.apache.tomcat.embed:tomcat-embed-websocket:9.0.+",
+            "reason": "https://github.ibm.com/toscana/planning/issues/33279",
+            "author" : "vas",
+            "date" : "28 Feb 2018"
+        }
+    ]
+}

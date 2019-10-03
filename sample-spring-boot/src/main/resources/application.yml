@@ -1,0 +1,27 @@
+server:
+  port: ${HTTPS_PORT:8443}
+  ssl:
+    enabled: ${SERVER_SSL_ENABLED:false}
+    key-store: ${SERVER_SSL_KEY_STORE:classpath:keystore.jks}
+    key-store-password: ${SERVER_SSL_KEY_STORE_PASSWORD:changeit}
+    key-store-type: ${SERVER_SSL_KEY_STORE_TYPE:PKCS12}
+config1:
+  key: name
+  value: tom
+  child:
+    name: andy
+    age: 10
+config2:
+  key: dept
+  value: IT
+  child:
+    name: tim
+    age: 12
+spring:
+  data:
+    cassandra:
+      keyspace-name: test_keyspace
+      contact-points: localhost
+      port: 9042
+      schema-action: create_if_not_exists
+
