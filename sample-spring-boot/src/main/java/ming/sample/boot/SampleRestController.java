@@ -5,13 +5,13 @@ import ming.sample.boot.services.CosService;
 import ming.sample.boot.services.EntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,7 +27,6 @@ public class SampleRestController {
   EntityService entityService;
   @Autowired
   CosService cosService;
-
 
   @RequestMapping(path = "/entities")
   public ResponseEntity<List<Entity>> entities() {
@@ -53,5 +52,11 @@ public class SampleRestController {
   @RequestMapping(path = "/buckets")
   public ResponseEntity<List<String>> listBuckets() {
     return new ResponseEntity<>(cosService.listBuckets(), HttpStatus.OK);
+  }
+
+  @RequestMapping(value = "/buckets/{bucket:.*}", method = RequestMethod.POST)
+  public ResponseEntity<Boolean> submit(@PathVariable String bucket, @RequestParam("file") MultipartFile file) throws IOException {
+    cosService.uploadFile(bucket, file);
+    return new ResponseEntity<>(true, HttpStatus.CREATED);
   }
 }

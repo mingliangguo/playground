@@ -24,10 +24,16 @@ spring:
       contact-points: localhost
       port: 9042
       schema-action: create_if_not_exists
+  servlet:
+    multipart:
+      file-size-threshold: 50MB
+      max-file-size: 50MB
+      max-request-size: 5MB
 cos:
   endpoint: https://s3.us-east.cloud-object-storage.appdomain.cloud
   location: us-east
   access-key: ${COS_ACCESS_KEY:myAccessKey}
   secret-key: ${COS_SECRET_KEY:mySecretKey}
+  default-bucket-name: ${COS_BUCKET_NAME:default_bucket}
 #  api-key: ${COS_API_KEY:myAccessKey}
 #  service-instance-id: ${COS_SERVICE_INSTANCE_ID:myServiceId}

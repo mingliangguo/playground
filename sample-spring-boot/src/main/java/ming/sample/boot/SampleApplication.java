@@ -40,7 +40,6 @@ public class SampleApplication {
     public Config config2() {
       return new Config();
     }
-
   }
 
 	public static void main(String[] args) {
