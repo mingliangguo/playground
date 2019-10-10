@@ -1,5 +1,6 @@
-package com.example.demo;
+package ming.sample.boot;
 
+import com.ibm.cos.spring.framework.EnableCOS;
 import lombok.Data;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,10 +10,11 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+@EnableCOS
 @SpringBootApplication
 @EnableConfigurationProperties
-@EntityScan(basePackages = "com.example.demo.model")
-public class TomcatApplication {
+@EntityScan(basePackages = "ming.demo.boot.model")
+public class SampleApplication {
   @Data
   static class Config {
     String key;
@@ -42,7 +44,7 @@ public class TomcatApplication {
   }
 
 	public static void main(String[] args) {
-		SpringApplication.run(TomcatApplication.class, args);
+		SpringApplication.run(SampleApplication.class, args);
 	}
 
 }

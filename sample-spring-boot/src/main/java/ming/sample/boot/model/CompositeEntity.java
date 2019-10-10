@@ -1,13 +1,15 @@
-package com.example.demo.model;
+package ming.sample.boot.model;
 
+import lombok.Data;
 import org.springframework.data.cassandra.core.mapping.Column;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
-@Table("entity")
-public class Entity {
+@Data
+@Table("composite_entities")
+public class CompositeEntity {
   @PrimaryKey
-  public String id;
+  public CompositeKey key;
   @Column
   public String name;
 }

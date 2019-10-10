@@ -24,4 +24,10 @@ spring:
       contact-points: localhost
       port: 9042
       schema-action: create_if_not_exists
-
+cos:
+  endpoint: https://s3.us-east.cloud-object-storage.appdomain.cloud
+  location: us-east
+  access-key: ${COS_ACCESS_KEY:myAccessKey}
+  secret-key: ${COS_SECRET_KEY:mySecretKey}
+#  api-key: ${COS_API_KEY:myAccessKey}
+#  service-instance-id: ${COS_SERVICE_INSTANCE_ID:myServiceId}

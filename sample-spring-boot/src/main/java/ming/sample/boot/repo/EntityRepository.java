@@ -1,6 +1,6 @@
-package com.example.demo.repo;
+package ming.sample.boot.repo;
 
-import com.example.demo.model.Entity;
+import ming.sample.boot.model.Entity;
 import org.springframework.data.repository.CrudRepository;
 
 public interface EntityRepository extends CrudRepository<Entity, String> {
