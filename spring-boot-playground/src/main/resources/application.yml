@@ -21,8 +21,8 @@ spring:
   data:
     cassandra:
       keyspace-name: test_keyspace
-      contact-points: localhost
-      port: 9042
+      contact-points: ${CASSANDRA_CONTACT_POINTS:localhost}
+      port: ${CASSANDRA_PORT:9042}
       schema-action: create_if_not_exists
   servlet:
     multipart:

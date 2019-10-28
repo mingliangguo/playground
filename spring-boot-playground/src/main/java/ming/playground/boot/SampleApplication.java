@@ -9,12 +9,22 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @EnableCOS
 @SpringBootApplication
 @EnableConfigurationProperties
-@EntityScan(basePackages = "ming.demo.boot.model")
+@EntityScan(basePackages = "ming.playground.boot.model")
 public class SampleApplication {
+  @Configuration
+  public static class AuthConfig extends WebSecurityConfigurerAdapter {
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+      http.csrf().disable();
+    }
+  }
+
   @Data
   static class Config {
     String key;
@@ -35,6 +45,7 @@ public class SampleApplication {
     public Config config1() {
       return new Config();
     }
+
     @Bean
     @ConfigurationProperties(prefix = "config2")
     public Config config2() {
@@ -42,8 +53,8 @@ public class SampleApplication {
     }
   }
 
-	public static void main(String[] args) {
-		SpringApplication.run(SampleApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(SampleApplication.class, args);
+  }
 
 }
