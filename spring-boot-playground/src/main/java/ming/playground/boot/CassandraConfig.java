@@ -19,6 +19,22 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
   @Value("${spring.data.cassandra.keyspace-name}")
   private String cassandraKeyspace;
 
+  @Value("${spring.data.cassandra.contact-points}")
+  private String contactPoints;
+
+  @Value("${spring.data.cassandra.port}")
+  private int port;
+
+  @Override
+  protected String getContactPoints() {
+    return contactPoints;
+  }
+
+  @Override
+  protected int getPort() {
+    return port;
+  }
+
   @Override
   protected List<CreateKeyspaceSpecification> getKeyspaceCreations() {
     return Collections.singletonList(CreateKeyspaceSpecification.createKeyspace(cassandraKeyspace)
@@ -39,4 +55,4 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
     return bean;
   }
 
-  }
+}

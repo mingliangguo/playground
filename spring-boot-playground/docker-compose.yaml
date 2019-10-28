@@ -1,0 +1,28 @@
+version: '3'
+services:
+  cassandra:
+    image: cassandra:3.11.3
+    environment:
+      - "JVM_OPTS=-Xms1024M -Xmx1024M"
+    ports:
+      - "9042:9042"
+    networks:
+      - backend
+  playground:
+    build: .
+    depends_on:
+      - "cassandra"
+    links:
+      - cassandra
+    environment:
+      CASSANDRA_CONTACT_POINTS: cassandra
+      CASSANDRA_PORT: 9042
+      WAIT_HOSTS: cassandra:9042
+    ports:
+      - "7000:7000"
+      - "8443:8443"
+    networks:
+      - backend
+networks:
+  backend:
+    driver: "bridge"
