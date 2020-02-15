@@ -2,6 +2,8 @@ package ming.playground.boot;
 
 import com.ibm.cos.spring.framework.EnableCOS;
 import lombok.Data;
+import ming.playground.boot.kafka.KafkaConstants;
+import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -36,6 +38,11 @@ public class SampleApplication {
       String name;
       int age;
     }
+  }
+
+  @Bean
+  public NewTopic moviesTopic() {
+    return new NewTopic(KafkaConstants.TOPIC_NAME, KafkaConstants.TOPIC_PARTITIONS, KafkaConstants.KAFKA_REPLICATION_FACTOR);
   }
 
   @Configuration

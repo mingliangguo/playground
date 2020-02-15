@@ -18,12 +18,45 @@ config2:
     name: tim
     age: 12
 spring:
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    date-format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
   data:
     cassandra:
       keyspace-name: test_keyspace
       contact-points: ${CASSANDRA_CONTACT_POINTS:localhost}
       port: ${CASSANDRA_PORT:9042}
       schema-action: create_if_not_exists
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: group_id
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+  cloud:
+    stream:
+      bindings:
+        process-in-0.destination: my-topic
+      kafka:
+        streams:
+          binder:
+            applicationId: my-app
+            brokers: localhost:9092
+            autoCreateTopics: true
+            autoAddPartitions: true
+            minPartitionCount: 1
+            configuration:
+              default:
+                key:
+                  serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+                value:
+                  serde: org.apache.kafka.common.serialization.Serdes$StringSerde
   servlet:
     multipart:
       file-size-threshold: 50MB
