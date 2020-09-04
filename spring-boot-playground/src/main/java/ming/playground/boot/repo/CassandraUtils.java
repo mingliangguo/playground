@@ -14,6 +14,8 @@ import org.springframework.data.cassandra.core.query.CassandraPageRequest;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.stream.Stream;
 
 @Slf4j
 public class CassandraUtils {
@@ -49,6 +51,12 @@ public class CassandraUtils {
     } while (nextPageState != null);
 
     return items;
+  }
+
+  public static <T> void scanStream(CassandraTemplate cassandraTemplate, Class<T> clazz, Consumer<T> consumer) {
+    final String select = "SELECT * FROM entities";
+    Stream<T> entityStream = cassandraTemplate.stream(select, clazz);
+    entityStream.forEach(consumer);
   }
 
   public static <T> ResultWrapper<T> fetchCassandraPage(final CassandraTemplate cassandraTemplate,

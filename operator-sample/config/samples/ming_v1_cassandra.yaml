@@ -1,0 +1,7 @@
+apiVersion: ming.mingliang.me/v1
+kind: Cassandra
+metadata:
+  name: cassandra-sample
+spec:
+  # Add fields here
+  foo: bar

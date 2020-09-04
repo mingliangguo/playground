@@ -1,0 +1,5 @@
+package my
+
+func TestEnv() {
+    
+}

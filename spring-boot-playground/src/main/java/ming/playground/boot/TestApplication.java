@@ -49,7 +49,7 @@ public class TestApplication {
 
   private static void scanClassesInPackage(String packageName) {
     List<String> classNames = new ArrayList<>();
-    try (ScanResult scanResult = new ClassGraph().whitelistPackages(packageName)
+    try (ScanResult scanResult = new ClassGraph().acceptPackages(packageName)
       .enableClassInfo().scan()) {
       ClassInfoList classInfoList = scanResult.getAllClasses();
       for (ClassInfo info: classInfoList) {
