@@ -1,28 +1,55 @@
 #include <stdio.h>
+#include <string.h>
+#include <math.h>
 
-int main (void) {
-  FILE* input_file = fopen("email.txt", "r");
+int readfile(FILE* fin, FILE* fout) {
+  fseek(fin, 0, SEEK_SET);
+  double values[100];
+  int len = 0;
 
-  char email[100];
-
-  if (input_file != NULL) {
-    int rc;
-    while ((rc = fscanf(input_file, "%[_a-zA-Z0-9.]@[_a-zA-Z0-9.]\n", email)) != EOF)
-    {
-      if (rc == 1)
-      {
-        printf("email is: %s\n", email);
-      }
-      else
-      {
-        printf("run into some error, rc = %d!\n", rc);
-        break;
-      }
+  printf("being to read file ...\n");
+  while((len = fread(values, sizeof(double), 100, fin)) != 0) {
+    printf("read %d values\n", len);
+    for (int i = 0; i < len; i++) {
+      double val = cos(values[i]);
+      fprintf(fout, "%0.4f : %.4f\n", values[i], val);
     }
-    fclose(input_file);
-  }
-  else {
-    printf ("open failed.");
   }
   return 0;
+}
+
+int readByFgets(FILE *fp) {
+   char str[10];
+   if( fgets (str, 10, fp)!=NULL ) {
+     for (int i = 0; i < 10; i++) {
+       printf("str[i] = %c\n", str[i]);
+     }
+
+     if (str[9] == '\0') {
+       printf("str[9] is '\\0'\n");
+     }
+      /* writing content to stdout */
+      //puts(str);
+   }
+   return 0;
+}
+
+int main () {
+   FILE *fp;
+   FILE *fout;
+
+   /* opening file for reading */
+   fp = fopen("double-values.bin" , "r");
+   fout = fopen("double-values.txt" , "w");
+   if(fp == NULL || fout == NULL) {
+      perror("Error opening file");
+      return(-1);
+   }
+
+   readfile(fp, fout);
+
+   fclose(fp);
+   fclose(fout);
+   
+   return(0);
 }

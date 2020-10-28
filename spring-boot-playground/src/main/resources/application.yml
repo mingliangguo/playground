@@ -11,6 +11,9 @@ config1:
   child:
     name: andy
     age: 10
+  movie-mapping:
+    foo: bar
+    this: that
 config2:
   key: dept
   value: IT

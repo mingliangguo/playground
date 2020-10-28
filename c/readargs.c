@@ -3,6 +3,7 @@
 #include <stdlib.h>
 
 int main(int argc, char* argv[]) {
+  printf("size of char is: %d\n", sizeof(char));
   int longest = 0;
   for (int i = 0; i < argc; i++) {
     printf("argv[%d] = %s\n", i, argv[i]);

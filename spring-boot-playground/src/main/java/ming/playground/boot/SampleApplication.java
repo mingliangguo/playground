@@ -4,7 +4,9 @@ import com.ibm.cos.spring.framework.EnableCOS;
 import lombok.Data;
 import ming.playground.boot.kafka.KafkaConstants;
 import org.apache.kafka.clients.admin.NewTopic;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -13,6 +15,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+import java.util.Map;
 
 @EnableCOS
 @SpringBootApplication
@@ -32,6 +36,7 @@ public class SampleApplication {
     String key;
     String value;
     Child child;
+    Map<String, String> movieMapping;
 
     @Data
     static class Child {
@@ -58,6 +63,7 @@ public class SampleApplication {
     public Config config2() {
       return new Config();
     }
+
   }
 
   public static void main(String[] args) {
