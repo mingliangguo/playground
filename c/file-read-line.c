@@ -49,9 +49,7 @@ char *readline (FILE *fp)
         if (buflen + 1 >= capacity) {  /* realloc */
             buffer = realloc (buffer, capacity * 2);
             if (!buffer) {
-                fprintf (stderr, "error: realloc failed, "
-                                "returning partial buffer.\n");
-                (buffer)[buflen] = 0;
+                fprintf (stderr, "error: realloc failed.\n");
                 return buffer;
             }
             capacity *= 2;

@@ -9,8 +9,14 @@ typedef struct {
 } Book;
 
 
+void printBooks(Book* books, size_t size);
 void createBooks();
 void createBookArray();
+int bookComparator(const void * p1, const void * p2) {
+  Book *b1 = (Book *)p1;
+  Book *b2 = (Book *)p2;
+  return b2->id - b1->id;
+}
 int main() {
   // createBooks();
   createBookArray();
@@ -26,13 +32,13 @@ void createBookArray() {
     sprintf(books[i].author, "author - %d", i);
   }
 
-  for (int i = 0; i < initCapacity; i++) {
-    Book book = books[i];
-    printf("Books - [%d], title: %s, author: %s\n", book.id, book.title, book.author);
-  }
+  printf("before sort: \n");
+  printBooks(books, initCapacity);
+  qsort(books, initCapacity, sizeof(Book), bookComparator);
+  printf("after sort: \n");
+  printBooks(books, initCapacity);
   free(books);
 }
-
 
 void createBooks() {
   int initCapacity = 5;
@@ -53,3 +59,10 @@ void createBooks() {
   free(books);
 }
 
+void printBooks(Book* books, size_t size) {
+  Book* book = books;
+  for (int i = 0; i < size; i++) {
+    printf("Books - [%d], title: %s, author: %s\n", book->id, book->title, book->author);
+    book++;
+  }
+}
