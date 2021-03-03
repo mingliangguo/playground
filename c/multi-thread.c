@@ -10,6 +10,7 @@ struct thread_data
 {
   int  thread_id;
   char data[50];
+  unsigned int seed;
 };
 
 
@@ -19,7 +20,9 @@ void *hello(void *threadarg)
 
   myData = (struct thread_data *) threadarg;
   printf("thread[%d], hello: %s\n", myData->thread_id, myData->data);
-  usleep(100);
+  unsigned int sleep = rand_r(&myData->seed) % 100;
+  printf("thread[%d], sleep - %d\n", myData->thread_id, sleep);
+  usleep(sleep);
   return NULL;
 }
 
@@ -28,13 +31,14 @@ int main ()
   pthread_t threads[NUM_THREADS];
 
   struct thread_data td[NUM_THREADS];
-
+  
   int rc, i;
 
+  unsigned int seed = (unsigned) time(NULL);
   for(i = 0; i < NUM_THREADS; i++)
   {
     td[i].thread_id = i;
-
+    td[i].seed = seed++;
     sprintf(td[i].data, "This is message - [%d]", i);
 
     rc = pthread_create(&threads[i], NULL,

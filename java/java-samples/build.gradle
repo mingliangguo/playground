@@ -27,6 +27,9 @@ dependencies {
   implementation "com.fasterxml.jackson.core:jackson-core"
   implementation "com.fasterxml.jackson.core:jackson-annotations"
   implementation "com.fasterxml.jackson.core:jackson-databind"
+  implementation "com.auth0:java-jwt:3.8.+"
+  implementation "com.auth0:jwks-rsa:0.9.+"
+
   compileOnly "org.projectlombok:lombok:$LIB_LOMBOK"
   testCompileOnly "org.projectlombok:lombok:$LIB_LOMBOK"
 

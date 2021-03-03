@@ -7,7 +7,7 @@ int readfile(FILE* fin, FILE* fout) {
   double values[100];
   int len = 0;
 
-  printf("being to read file ...\n");
+  printf("begin to read file ...\n");
   while((len = fread(values, sizeof(double), 100, fin)) != 0) {
     printf("read %d values\n", len);
     for (int i = 0; i < len; i++) {
