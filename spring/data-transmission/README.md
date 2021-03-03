@@ -28,4 +28,11 @@ cd kafka_2.13-2.7.0/bin
 ```bash
 docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=P@ssw0rd' -p 1433:1433 -d mcr.microsoft.com/mssql/server:2017-latest
 ```
+### Connect to SQL Server instance
+
+[DBeaver Community](https://dbeaver.io/) is a very nice tool for database management.
+
+```bash
+brew install --cask dbeaver-community
+```
 
