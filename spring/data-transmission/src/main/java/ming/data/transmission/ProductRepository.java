@@ -1,5 +1,6 @@
 package ming.data.transmission;
 
+import java.sql.Statement;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -16,6 +17,17 @@ public class ProductRepository {
     public ProductRepository(DataSource ds) {
         this.ds = ds;
         jdbcTemplate = new JdbcTemplate(ds);
+    }
+
+    public void createProduct(Product p) {
+        final String sql = "INSERT INTO product_db (id, name, price, category) VALUES(?, ?, ?, ?);";
+        Object[] params = new Object[] {
+                p.getId(),
+                p.getName(),
+                p.getPrice(),
+                p.getCategory()
+        };
+        jdbcTemplate.update(sql, params);
     }
 
     public List<Product> queryProducts() {

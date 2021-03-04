@@ -71,5 +71,3 @@ cos:
   access-key: ${COS_ACCESS_KEY:myAccessKey}
   secret-key: ${COS_SECRET_KEY:mySecretKey}
   default-bucket-name: ${COS_BUCKET_NAME:default_bucket}
-#  api-key: ${COS_API_KEY:myAccessKey}
-#  service-instance-id: ${COS_SERVICE_INSTANCE_ID:myServiceId}
