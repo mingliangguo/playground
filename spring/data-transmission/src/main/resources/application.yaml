@@ -1,4 +1,15 @@
 spring:
+  kafka:
+    consumer:
+      bootstrap-servers: skywalker.local:9092
+      group-id: group_id
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      bootstrap-servers: skywalker.local:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
   datasource:
     sqlserver:
       url: ${DB_URL:jdbc:sqlserver://skywalker.local:1433;databaseName=testdb;}

@@ -1,4 +1,4 @@
-package ming.data.transmission;
+package ming.data.transmission.repository;
 
 import java.sql.Statement;
 import java.util.List;

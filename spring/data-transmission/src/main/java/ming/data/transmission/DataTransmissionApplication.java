@@ -1,18 +1,14 @@
 package ming.data.transmission;
 
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import ming.data.transmission.kafka.ProducerService;
 import ming.data.transmission.model.Product;
+import ming.data.transmission.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -27,12 +23,19 @@ public class DataTransmissionApplication implements CommandLineRunner {
 	@Autowired
 	private ProductRepository productRepository;
 
+	@Autowired
+	private ProducerService producerService;
+
 	public static void main(String[] args) throws SQLException {
 		SpringApplication.run(DataTransmissionApplication.class, args);
 	}
 
 	public List<Product> fetchProduct() {
 		return this.productRepository.queryProducts();
+	}
+
+	public void sendMessage(Product p) {
+		this.producerService.sendMessage("product", p.toString());
 	}
 
 	@Override
@@ -46,6 +49,7 @@ public class DataTransmissionApplication implements CommandLineRunner {
 				.build()
 		);
 		val res = this.fetchProduct();
+		res.forEach(this::sendMessage);
 		log.info("products are: {}", res);
 	}
 }
