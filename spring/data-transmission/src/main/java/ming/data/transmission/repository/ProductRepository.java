@@ -31,12 +31,12 @@ public class ProductRepository {
     }
 
     public List<Product> queryProducts() {
-        return jdbcTemplate.query("select * from product_db",
+        return jdbcTemplate.query("SELECT * FROM product_db",
                 (rs, num) -> Product.builder()
-                    .id(rs.getInt(1))
-                    .name(rs.getString(2))
-                    .price(rs.getDouble(3))
-                    .category(rs.getInt(4))
+                    .id(rs.getInt("ID"))
+                    .name(rs.getString("NAME"))
+                    .price(rs.getDouble("PRICE"))
+                    .category(rs.getInt("CATEGORY"))
                 .build());
     }
 }
