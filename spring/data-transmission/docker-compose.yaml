@@ -39,5 +39,5 @@ services:
     environment:
       ACCEPT_EULA: "Y"
       SA_PASSWORD: "P@ssw0rd"
-      ZOO_SERVERS: server.1=zoo1:2888:3888
+      MSSQL_PID: "Enterprise"
 
