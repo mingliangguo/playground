@@ -16,6 +16,7 @@ configurations {
 
 ext {
 	libJacksonVer = "2.12.+"
+	libGuava = "30.+"
 }
 
 repositories {
@@ -23,13 +24,17 @@ repositories {
 }
 
 dependencies {
+	implementation "org.springframework.boot:spring-boot-starter"
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.kafka:spring-kafka'
 
 	implementation  platform("com.fasterxml.jackson:jackson-bom:${libJacksonVer}")
 	implementation "com.fasterxml.jackson.core:jackson-core"
 	implementation "com.fasterxml.jackson.core:jackson-annotations"
 	implementation "com.fasterxml.jackson.core:jackson-databind"
+
+	implementation "com.google.guava:guava:${libGuava}"
 
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc'

@@ -28,6 +28,9 @@ cd kafka_2.13-2.7.0/bin
 ```bash
 docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=P@ssw0rd' -p 1433:1433 -d mcr.microsoft.com/mssql/server:2017-latest
 ```
+
+- Refer to: [Deploy and connect to SQL Server Docker containers](https://docs.microsoft.com/de-de/sql/linux/sql-server-linux-docker-container-deployment?view=sql-server-ver15&pivots=cs1-bash)
+
 ### Connect to SQL Server instance
 
 [DBeaver Community](https://dbeaver.io/) is a very nice tool for database management.

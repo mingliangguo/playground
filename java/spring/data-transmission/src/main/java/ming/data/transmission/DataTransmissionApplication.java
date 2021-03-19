@@ -8,12 +8,12 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import ming.data.transmission.kafka.ProducerService;
 import ming.data.transmission.model.Product;
-import ming.data.transmission.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
+import ming.data.transmission.repository.*;
 
 @Slf4j
 @ConfigurationPropertiesScan
@@ -31,17 +31,17 @@ public class DataTransmissionApplication implements CommandLineRunner {
 	}
 
 	public List<Product> fetchProduct() {
-		return this.productRepository.queryProducts();
+		return productRepository.queryProducts();
 	}
 
 	public void sendMessage(Product p) {
-		this.producerService.sendMessage("product", p.toString());
+		this.producerService.sendProduct("product", p);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
 		val rand = new Random();
-		this.productRepository.createProduct(Product.builder()
+		productRepository.createProduct(Product.builder()
 				.id(rand.nextInt())
 				.name(String.format("rand name %d", rand.nextInt(100)))
 				.price(rand.nextDouble())
