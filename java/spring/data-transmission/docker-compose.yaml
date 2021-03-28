@@ -40,4 +40,11 @@ services:
       ACCEPT_EULA: "Y"
       SA_PASSWORD: "P@ssw0rd"
       MSSQL_PID: "Enterprise"
-
+  manager:
+    image: sheepkiller/kafka-manager
+    ports:
+      - 9000:9000
+    environment:
+      - ZK_HOSTS=zoo1:2181
+    depends_on:
+      - zoo1
