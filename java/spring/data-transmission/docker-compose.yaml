@@ -40,7 +40,7 @@ services:
     depends_on:
       - zoo1
   kafka-schema-registry:
-    image: confluentinc/cp-schema-registry:5.3.0
+    image: confluentinc/cp-schema-registry:5.5.1
     hostname: kafka-schema-registry
     ports:
       - "8081:8081"
@@ -53,7 +53,7 @@ services:
       - kafka1
 
   schema-registry-ui:
-    image: landoop/schema-registry-ui:0.9.4
+    image: landoop/schema-registry-ui:0.9.5
     hostname: kafka-schema-registry-ui
     ports:
       - "8001:8000"
@@ -62,6 +62,37 @@ services:
       PROXY: "true"
     depends_on:
       - kafka-schema-registry
+
+  kafka-rest-proxy:
+    image: confluentinc/cp-kafka-rest:5.5.1
+    hostname: kafka-rest-proxy
+    ports:
+      - "8082:8082"
+    environment:
+      # KAFKA_REST_ZOOKEEPER_CONNECT: zoo1:2181
+      KAFKA_REST_LISTENERS: http://0.0.0.0:8082/
+      KAFKA_REST_SCHEMA_REGISTRY_URL: http://kafka-schema-registry:8081/
+      KAFKA_REST_HOST_NAME: kafka-rest-proxy
+      KAFKA_REST_BOOTSTRAP_SERVERS: PLAINTEXT://kafka1:19092
+    depends_on:
+      - zoo1
+      - kafka1
+      - kafka-schema-registry
+
+  kafka-topics-ui:
+    image: landoop/kafka-topics-ui:0.9.4
+    hostname: kafka-topics-ui
+    ports:
+      - "8000:8000"
+    environment:
+      KAFKA_REST_PROXY_URL: "http://kafka-rest-proxy:8082/"
+      PROXY: "true"
+    depends_on:
+      - zoo1
+      - kafka1
+      - kafka-schema-registry
+      - kafka-rest-proxy
+
   zoonavigator:
     image: elkozmon/zoonavigator:0.8.0
     ports:
