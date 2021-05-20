@@ -112,5 +112,6 @@ services:
       ACCEPT_EULA: "Y"
       SA_PASSWORD: "${DATABASE_PASSWORD:-P@ssw0rd}"
       MSSQL_PID: "Enterprise"
+      MSSQL_AGENT_ENABLED: "true"
     volumes:
       - ./mssql/data:/var/opt/mssql
