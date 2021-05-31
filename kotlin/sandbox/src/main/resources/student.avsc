@@ -1,0 +1,15 @@
+{
+  "type": "record",
+  "name": "Student",
+  "namespace": "me.mingliang.kafka",
+  "fields": [
+    {
+      "name": "firstName",
+      "type": "string"
+    },
+    {
+      "name": "lastName",
+      "type": "string"
+    }
+  ]
+}
