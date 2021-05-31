@@ -1,11 +1,9 @@
 package me.mingliang.kafka.producer
 
 import com.github.javafaker.Faker
-import io.confluent.kafka.serializers.KafkaAvroSerializer
 import me.mingliang.kafka.data.Student
 import me.mingliang.kafka.jsonMapper
 import mu.KotlinLogging
-import org.apache.avro.generic.GenericRecordBuilder
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.Producer
 import org.apache.kafka.clients.producer.ProducerRecord

@@ -16,16 +16,19 @@ class Application {
         lastName = faker.name().lastName())
     }
     fun startProducer() {
-//        val schemaPath = "src/main/resources/student.avsc"
-//        AvroProducer(brokers = "skywalker:9092", schemaRegistryUrl = "http://skywalker:8081", schemaPath)
-//            .produce(kafkaAvroTopic, 5)
         PlainProducer(brokers = "skywalker:9092")
             .produce(kafkaTopic, 5)
+    }
+    fun startAvroProducer() {
+        val schemaPath = "src/main/resources/student.avsc"
+        AvroProducer(brokers = "skywalker:9092", schemaRegistryUrl = "http://skywalker:8081", schemaPath)
+            .produce(kafkaAvroTopic, 5)
     }
 }
 fun main() {
     val app = Application()
     val emp = app.createStudent()
     app.startProducer()
+    app.startAvroProducer()
     println(emp)
 }
