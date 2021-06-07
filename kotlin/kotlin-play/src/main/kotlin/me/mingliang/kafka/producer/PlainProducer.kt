@@ -28,6 +28,7 @@ class PlainProducer(brokers: String) {
         val faker = Faker()
         while (true) {
             val fakeStudent = Student(
+                id = System.nanoTime(),
                 firstName = faker.name().firstName(),
                 lastName = faker.name().lastName()
             )

@@ -58,7 +58,7 @@ tasks {
     }
 }
 
-tasks.withType<ShadowJar>() {
+tasks.withType<ShadowJar> {
     manifest {
         attributes["Main-Class"] = "me.mingliang.MainKt"
     }

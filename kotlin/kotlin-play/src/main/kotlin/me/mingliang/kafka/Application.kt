@@ -12,8 +12,10 @@ class Application {
     fun createStudent(): Student {
         logger.info { "create student object ..." }
         return Student(
-        firstName = faker.name().firstName(),
-        lastName = faker.name().lastName())
+            id = System.nanoTime(),
+            firstName = faker.name().firstName(),
+            lastName = faker.name().lastName()
+        )
     }
     fun startProducer() {
         PlainProducer(brokers = "skywalker:9092")
@@ -21,14 +23,15 @@ class Application {
     }
     fun startAvroProducer() {
         val schemaPath = "src/main/resources/student.avsc"
-        AvroProducer(brokers = "skywalker:9092", schemaRegistryUrl = "http://skywalker:8081", schemaPath)
+        val keySchemaPath = "src/main/resources/student-key.avsc"
+        AvroProducer(brokers = "skywalker:9092", schemaRegistryUrl = "http://skywalker:8081", keySchemaPath, schemaPath)
             .produce(kafkaAvroTopic, 5)
     }
 }
 fun main() {
     val app = Application()
     val emp = app.createStudent()
-    app.startProducer()
+//    app.startProducer()
     app.startAvroProducer()
     println(emp)
 }
