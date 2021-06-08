@@ -37,6 +37,9 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:2.9.6")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.6")
 
+    // dotenv
+    implementation("io.github.cdimascio:dotenv-kotlin:6.2.2")
+
     // faker
     implementation("com.github.javafaker:javafaker:0.15")
 
