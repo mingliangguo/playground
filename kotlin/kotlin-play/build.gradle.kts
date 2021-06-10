@@ -37,6 +37,10 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:2.9.6")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.6")
 
+    // bigquery
+
+    implementation("com.google.cloud:google-cloud-bigquery:1.127.11")
+
     // dotenv
     implementation("io.github.cdimascio:dotenv-kotlin:6.2.2")
 

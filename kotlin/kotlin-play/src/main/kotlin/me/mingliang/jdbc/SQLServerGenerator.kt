@@ -1,6 +1,6 @@
 package me.mingliang.jdbc
 
-import io.github.cdimascio.dotenv.Dotenv
+import me.mingliang.config.Config
 import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.ResultSet
@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 
-class SQLServerGenerator(private val dotenv: Dotenv) {
+class SQLServerGenerator(private val cfg: Config) {
 
     companion object {
         const val DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS"
@@ -32,7 +32,7 @@ class SQLServerGenerator(private val dotenv: Dotenv) {
 
     fun getConn(): Connection {
 
-        return DriverManager.getConnection(dotenv["jdbc_url"], dotenv["db_user"], dotenv["db_password"])
+        return DriverManager.getConnection(cfg.jdbcUrl, cfg.databaseUser, cfg.databasePassword)
     }
 
     fun populateData() {
