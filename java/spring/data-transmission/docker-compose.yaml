@@ -104,14 +104,15 @@ services:
       AUTO_CONNECT_CONNECTION_STRING: zoo1:2181
 
   sqlserver:
-    image: mcr.microsoft.com/mssql/server:2017-latest
+    image: mcr.microsoft.com/mssql/server:2019-latest
     hostname: sqlserver
     ports:
       - "1433:1433"
     environment:
       ACCEPT_EULA: "Y"
       SA_PASSWORD: "${DATABASE_PASSWORD:-P@ssw0rd}"
+      TZ: "UTC"
       MSSQL_PID: "Enterprise"
       MSSQL_AGENT_ENABLED: "true"
     volumes:
-      - ./mssql/data:/var/opt/mssql
+      - ./data/mssql:/var/opt/mssql
